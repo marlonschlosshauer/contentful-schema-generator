@@ -31,12 +31,21 @@ export default function Home() {
           <p>
             Use this tool to generate types for your Contentful Application. All
             that you need is to enter your spaceId, environmentId and pass a
-            valid API token. This is built upon{" "}
+            valid{" "}
+            <Link
+              className="underline"
+              href="https://www.contentful.com/developers/docs/references/authentication/?utm_source=webapp&utm_medium=knowledge-base-api_key&utm_campaign=in-app-help#the-delivery-and-preview-api"
+              target="_blank"
+            >
+              Contentful API key
+            </Link>
+            . This is built upon{" "}
             <Link
               className="underline"
               href="https://github.com/intercom/contentful-typescript-codegen"
+              target="_blank"
             >
-              intercom/contentful-typescript-codegen
+              contentful-typescript-codegen
             </Link>{" "}
             which is a CLI tool that allows you to generate types from a config.
             If you would rather deploy this yourself or want to check the source
