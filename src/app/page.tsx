@@ -39,8 +39,8 @@ export default function Home() {
               intercom/contentful-typescript-codegen
             </Link>{" "}
             which is a CLI tool that allows you to generate types from a config.
-            . If you would rather deploy this yourself or want to check the
-            source code, you can find the repository{" "}
+            If you would rather deploy this yourself or want to check the source
+            code, you can find the repository{" "}
             <Link
               className="underline"
               href="https://github.com/marlonschlosshauer/contentful-schema-generator"
