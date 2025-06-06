@@ -17,7 +17,7 @@ export const Input: FC<InputProps> = ({ label, name, required }) => {
         name={name}
         required={required}
         type="text"
-        className="border-2 border-solid border-sm"
+        className="border-2 border-solid rounded-sm border-blue-200"
       />
     </div>
   );

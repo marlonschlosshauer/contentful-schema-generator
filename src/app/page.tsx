@@ -2,6 +2,7 @@
 
 import { getTypes, GetTypesState } from "@/actions/getTypes";
 import { Input } from "@/components/Input";
+import Link from "next/link";
 import { useActionState, useEffect } from "react";
 
 const base = {
@@ -22,20 +23,57 @@ export default function Home() {
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-4 row-start-2 items-center sm:items-start">
-        <form action={generate} className="flex flex-col gap-4">
-          <Input name="spaceId" label="Space Id" required />
-          <Input name="environmentId" label="Environment Id" required />
-          <Input name="token" label="CMA Token" required />
-          <button
-            type="submit"
-            disabled={loading || state.status === "success"}
-            className="bg-blue-500 text-white p-1 hover:bg-blue-600"
-          >
-            {state.status === "success" ? "Submit" : "Done"}
-          </button>
-        </form>
-        <br />
+      <main className="flex flex-col gap-10 row-start-2 items-star max-w-2xl w-full">
+        <section aria-label="Tool introduction" className="flex flex-col gap-2">
+          <h1 className="text-2xl">
+            Generate Typescript types from your Contentful Content-Types
+          </h1>
+          <p>
+            Use this tool to generate types for your Contentful Application. All
+            that you need is to enter your spaceId, environmentId and pass a
+            valid API token. This is built upon{" "}
+            <Link
+              className="underline"
+              href="https://github.com/intercom/contentful-typescript-codegen"
+            >
+              intercom/contentful-typescript-codegen
+            </Link>{" "}
+            which is a CLI tool that allows you to generate types from a config.
+            . If you would rather deploy this yourself or want to check the
+            source code, you can find the repository{" "}
+            <Link
+              className="underline"
+              href="https://github.com/marlonschlosshauer/contentful-schema-generator"
+              target="_blank"
+            >
+              here
+            </Link>
+            .
+          </p>
+        </section>
+        <section aria-label="Inputs for the tool">
+          <form action={generate} className="flex flex-col gap-4">
+            <Input name="spaceId" label="Space Id" required />
+            <Input name="environmentId" label="Environment Id¹" required />
+            <Input name="token" label="API Key" required />
+            <button
+              type="submit"
+              disabled={loading || state.status === "success"}
+              className="bg-blue-500 text-white p-1 hover:bg-blue-600"
+            >
+              {state.status !== "success" ? "Download .ts file" : "Done"}
+            </button>
+          </form>
+        </section>
+        <section aria-label="hints" className="flex flex-col gap-2">
+          <hr className="border-blue-200" />
+          <ul>
+            <li>
+              ¹ Make sure your API Key has access to the environment you want to
+              generate types for.
+            </li>
+          </ul>
+        </section>
       </main>
     </div>
   );
