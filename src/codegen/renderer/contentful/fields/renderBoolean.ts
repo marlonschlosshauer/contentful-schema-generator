@@ -1,5 +1,6 @@
-import { Field } from "contentful"
+import { Field } from "contentful";
 
-export default function renderBoolean(field: Field) {
-  return "boolean"
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function renderBoolean(_: Field) {
+  return "boolean";
 }
