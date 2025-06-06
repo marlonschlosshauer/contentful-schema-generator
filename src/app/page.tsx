@@ -68,7 +68,7 @@ export default function Home() {
             <button
               type="submit"
               disabled={loading || state.status === "success"}
-              className="bg-blue-500 text-white p-1 hover:bg-blue-600"
+              className="bg-blue-500 text-white p-1 hover:bg-blue-600 disabled:bg-blue-900 disabled:cursor-not-allowed"
             >
               {state.status !== "success" ? "Download .ts file" : "Done"}
             </button>
