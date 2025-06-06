@@ -24,26 +24,30 @@ export const getTypes = async (
   _: GetTypesState,
   data: FormData,
 ): Promise<GetTypesState> => {
-  try {
-    const { token, spaceId, environmentId } = schema.parse(
-      Object.fromEntries(data.entries()),
-    );
+  const parse = schema.safeParse(Object.fromEntries(data.entries()));
 
-    try {
-      return {
-        status: "success",
-        output: await generateTypes([token, spaceId, environmentId]),
-      };
-    } catch {
+  if (!parse.success) {
+    throw new Error(parse.error.toString());
+  }
+
+  const { token, spaceId, environmentId } = parse.data;
+
+  try {
+    return {
+      status: "success",
+      output: await generateTypes([token, spaceId, environmentId]),
+    };
+  } catch (e: unknown) {
+    if (typeof e === "string") {
       return {
         status: "error",
-        message: "Error generating types",
+        message: e,
+      };
+    } else {
+      return {
+        status: "error",
+        message: "An unknown error occured",
       };
     }
-  } catch {
-    return {
-      status: "error",
-      message: "Missing props",
-    };
   }
 };

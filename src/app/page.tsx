@@ -63,6 +63,11 @@ export default function Home() {
             >
               {state.status !== "success" ? "Download .ts file" : "Done"}
             </button>
+            {state.status === "error" && (
+              <p className="text-red-500" role="alert">
+                {state.message}
+              </p>
+            )}
           </form>
         </section>
         <section aria-label="hints" className="flex flex-col gap-2">
