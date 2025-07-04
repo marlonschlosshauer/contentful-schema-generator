@@ -1,6 +1,10 @@
 "use server";
 
-import { generateTypes } from "@/codegen";
+import { getClient } from "@/contentful/client";
+import CFDefinitionsBuilder, {
+  ResponseTypeRenderer,
+  V10ContentTypeRenderer,
+} from "cf-content-types-generator";
 import { z } from "zod";
 
 export type GetTypesState =
@@ -32,10 +36,20 @@ export const getTypes = async (
 
   const { token, spaceId, environmentId } = parse.data;
 
+  const builder = new CFDefinitionsBuilder([
+    new V10ContentTypeRenderer(),
+    new ResponseTypeRenderer(),
+  ]);
+
+  const client = getClient(token, spaceId, environmentId);
+
+  const contentTypes = await client.getContentTypes();
+
+  const output = builder.appendTypes(contentTypes.items);
   try {
     return {
       status: "success",
-      output: await generateTypes([token, spaceId, environmentId]),
+      output: output.toString(),
     };
   } catch (e: unknown) {
     if (typeof e === "string") {
