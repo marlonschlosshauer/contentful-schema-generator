@@ -77,7 +77,11 @@ export default function Home() {
               disabled={loading || state.status === "success"}
               className="bg-blue-500 text-white p-1 hover:bg-blue-600 disabled:bg-blue-900 disabled:cursor-not-allowed"
             >
-              {state.status !== "success" ? "Download .ts file" : "Done"}
+              {loading
+                ? "Loading..."
+                : state.status !== "success"
+                  ? "Download .ts file"
+                  : "Done"}
             </button>
             {state.status === "error" && (
               <p className="text-red-500" role="alert">
