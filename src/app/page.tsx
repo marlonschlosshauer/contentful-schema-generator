@@ -29,27 +29,27 @@ export default function Home() {
             Generate Typescript types from your Contentful Content-Types
           </h1>
           <p>
-            Use this tool to generate types for your Contentful Application. All
-            that you need is to enter your spaceId, environmentId and pass a
-            valid{" "}
+            Use this tool to generate TypeScript types from your Contentful
+            Model. Skeletons included. All that you need is to enter your
+            spaceId, environmentId and pass a valid{" "}
             <Link
               className="underline"
               href="https://www.contentful.com/developers/docs/references/authentication/?utm_source=webapp&utm_medium=knowledge-base-api_key&utm_campaign=in-app-help#the-delivery-and-preview-api"
               target="_blank"
             >
-              Contentful API key
+              Contentful CDA access token
             </Link>
             . This is built upon{" "}
             <Link
               className="underline"
-              href="https://github.com/intercom/contentful-typescript-codegen"
+              href="https://github.com/contentful-userland/cf-content-types-generator"
               target="_blank"
             >
-              contentful-typescript-codegen
+              cf-content-types-generator
             </Link>{" "}
-            which is a CLI tool that allows you to generate types from a config.
-            If you would rather deploy this yourself or want to check out the
-            source code, you can find the repository{" "}
+            which is a package that allows you to generate types. If you would
+            rather deploy this yourself or want to check out the source code,
+            you can find the repository{" "}
             <Link
               className="underline"
               href="https://github.com/marlonschlosshauer/contentful-schema-generator"
@@ -63,8 +63,17 @@ export default function Home() {
         <section aria-label="Inputs for the tool">
           <form action={generate} className="flex flex-col gap-4">
             <Input name="spaceId" label="Space Id" required />
-            <Input name="environmentId" label="Environment Id¹" required />
-            <Input name="token" label="API Key" required />
+            <Input
+              name="environmentId"
+              label="Environment Id¹"
+              defaultValue="master"
+              required
+            />
+            <Input
+              name="token"
+              label="Content Delivery API - access token"
+              required
+            />
             <button
               type="submit"
               disabled={loading || state.status === "success"}

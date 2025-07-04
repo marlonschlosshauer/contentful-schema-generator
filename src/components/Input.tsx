@@ -5,19 +5,19 @@ export interface InputProps {
   name: string;
   label: string;
   required?: boolean;
+  defaultValue?: string;
 }
 
-export const Input: FC<InputProps> = ({ label, name, required }) => {
+export const Input: FC<InputProps> = ({ label, ...props }) => {
   const id = useId();
   return (
     <div className="flex flex-col">
       <label htmlFor={id}>{label}</label>
       <input
         id={id}
-        name={name}
-        required={required}
         type="text"
         className="border-2 border-solid rounded-sm border-blue-200"
+        {...props}
       />
     </div>
   );
