@@ -23,10 +23,10 @@ export default function Home() {
 
   return (
     <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-10 row-start-2 items-star max-w-2xl w-full">
-        <section aria-label="Tool introduction" className="flex flex-col gap-2">
-          <h1 className="text-2xl">Make your Contentful Models come alive</h1>
-          <p>
+      <main className="flex flex-col gap-4 row-start-2 items-star max-w-2xl w-full">
+        <section aria-label="Tool introduction" className="flex flex-col gap-4">
+          <h1 className="text-3xl">Make your Contentful Models come alive</h1>
+          <p className="text-justify">
             Generate TypeScript types from your Contentful Model. Skeletons
             included. All that you need is to enter your spaceId, environmentId
             and pass a valid{" "}
@@ -35,7 +35,7 @@ export default function Home() {
               href="https://www.contentful.com/developers/docs/references/authentication/?utm_source=webapp&utm_medium=knowledge-base-api_key&utm_campaign=in-app-help#the-delivery-and-preview-api"
               target="_blank"
             >
-              Contentful CDA access token
+              CDA token
             </Link>
             . This is built upon{" "}
             <Link
