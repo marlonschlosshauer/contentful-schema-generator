@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Make your Contentful Models come alive",
+  title: "Make your Contentful Model come alive",
   description:
     "Generate TypeScript types from your Contentful Model. Skeletons included. Headaches excluded.",
 };
