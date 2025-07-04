@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { FC, useId } from "react";
 
 export interface InputProps {
@@ -6,13 +7,21 @@ export interface InputProps {
   label: string;
   required?: boolean;
   defaultValue?: string;
+  note?: string;
 }
 
-export const Input: FC<InputProps> = ({ label, ...props }) => {
+export const Input: FC<InputProps> = ({ label, note, ...props }) => {
   const id = useId();
   return (
     <div className="flex flex-col">
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id}>
+        {label}{" "}
+        {note && (
+          <Link href={`#${note}`}>
+            <sup>{note}</sup>
+          </Link>
+        )}
+      </label>
       <input
         id={id}
         type="text"

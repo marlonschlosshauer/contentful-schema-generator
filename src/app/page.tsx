@@ -1,6 +1,7 @@
 "use client";
 
 import { getTypes, GetTypesState } from "@/actions/getTypes";
+import { Footnote } from "@/components/Footnote";
 import { Input } from "@/components/Input";
 import Link from "next/link";
 import { useActionState, useEffect } from "react";
@@ -28,15 +29,17 @@ export default function Home() {
           <h1 className="text-3xl">Make your Contentful Model come alive</h1>
           <p className="text-justify">
             Generate TypeScript types from your Contentful Model. Skeletons
-            included. All that you need is to enter your spaceId, environmentId
-            and pass a valid{" "}
-            <Link
-              className="underline"
-              href="https://www.contentful.com/developers/docs/references/authentication/?utm_source=webapp&utm_medium=knowledge-base-api_key&utm_campaign=in-app-help#the-delivery-and-preview-api"
-              target="_blank"
-            >
-              CDA token
-            </Link>
+            included. All that you need is to enter your <code>spaceId</code>,{" "}
+            <code>environmentId</code> and pass a valid{" "}
+            <code>
+              <Link
+                className="underline"
+                href="https://www.contentful.com/developers/docs/references/authentication/?utm_source=webapp&utm_medium=knowledge-base-api_key&utm_campaign=in-app-help#the-delivery-and-preview-api"
+                target="_blank"
+              >
+                accessToken
+              </Link>
+            </code>
             . This is built upon{" "}
             <Link
               className="underline"
@@ -63,15 +66,12 @@ export default function Home() {
             <Input name="spaceId" label="Space Id" required />
             <Input
               name="environmentId"
-              label="Environment Id¹"
+              label="Environment Id"
               defaultValue="master"
+              note="1"
               required
             />
-            <Input
-              name="token"
-              label="Content Delivery API - access token"
-              required
-            />
+            <Input name="token" label="accessToken" note="2" required />
             <button
               type="submit"
               disabled={loading || state.status === "success"}
@@ -92,12 +92,21 @@ export default function Home() {
         </section>
         <section aria-label="hints" className="flex flex-col gap-2">
           <hr className="border-blue-200" />
-          <ul>
-            <li>
-              ¹ Make sure your API Key has access to the environment you want to
-              generate types for.
-            </li>
-          </ul>
+          <nav aria-label="Footnotes">
+            <ul>
+              <li>
+                <Footnote note="1">
+                  Make sure your access token has access to this environment.
+                </Footnote>
+              </li>
+              <li>
+                <Footnote note="2">
+                  Your access token should be a <em>Content Delivery API</em>{" "}
+                  access token.
+                </Footnote>
+              </li>
+            </ul>
+          </nav>
         </section>
       </main>
     </div>
