@@ -43,25 +43,33 @@ export const getTypes = async (
 
   const client = getClient(token, spaceId, environmentId);
 
-  const contentTypes = await client.getContentTypes();
-
-  const output = builder.appendTypes(contentTypes.items);
   try {
-    return {
-      status: "success",
-      output: output.toString(),
-    };
-  } catch (e: unknown) {
-    if (typeof e === "string") {
+    const contentTypes = await client.getContentTypes();
+
+    const output = builder.appendTypes(contentTypes.items);
+
+    try {
       return {
-        status: "error",
-        message: e,
+        status: "success",
+        output: output.toString(),
       };
-    } else {
-      return {
-        status: "error",
-        message: "An unknown error occured",
-      };
+    } catch (e: unknown) {
+      if (typeof e === "string") {
+        return {
+          status: "error",
+          message: e,
+        };
+      } else {
+        return {
+          status: "error",
+          message: "An unknown error occured",
+        };
+      }
     }
+  } catch {
+    return {
+      status: "error",
+      message: "Error fetching types, check credentials",
+    };
   }
 };
